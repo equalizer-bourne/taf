@@ -1,7 +1,7 @@
 
 #-------------------------------------------------------------------------------
-export LC_ALL	= zh_CN.GB2312
-export LANG	= zh_CN.GB2312
+#export LC_ALL	= zh_CN.GB2312
+#export LANG	= zh_CN.GB2312
 PLATFORM       	= $(strip $(shell echo `uname -m`))
 
 #-------------------------------------------------------------------------------
@@ -13,8 +13,12 @@ TAF_VERSION    := $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)
 
 #-------------------------------------------------------------------------------
 
-INSTALL_PATH   := /usr/local/taf-version/taf-$(TAF_VERSION)
-LINK_PATH      := /usr/local/taf-version/taf
+#INSTALL_PATH   := /usr/local/taf-version/taf-$(TAF_VERSION)
+#LINK_PATH      := /usr/local/taf-version/taf
+
+INSTALL_PATH   := /usr/local/taf-$(TAF_VERSION)
+LINK_PATH      := /usr/local/taf
+
 
 #-------------------------------------------------------------------------------
 JCE2CS	       := ${TOPDIR}/bin/jce2cs
@@ -105,9 +109,9 @@ STAT_H      	:= ${TOPDIR}/include/stat
 STAT_C      	:= ${TOPDIR}/src/stat
 
 #-------------------------------------------------------------------------------
-INCLUDE     	+= -I${TOPDIR}/include -I/usr/local/mysql/include/mysql
+INCLUDE     	+= -I${TOPDIR}/include -I/usr/local/mysql/include
 #LIB        	+= -L${TOPDIR}/lib -lpthread -L/usr/local/mysql/lib/mysql
-LIB_32      	+= -L${TAFLIB_PATH_32} -lpthread -L/usr/local/mysql/lib/mysql
-LIB_64      	+= -L${TAFLIB_PATH_64} -lpthread -L/usr/local/mysql/lib/mysql
+LIB_32      	+= -L${TAFLIB_PATH_32} -lpthread -L/usr/local/mysql/lib
+LIB_64      	+= -L${TAFLIB_PATH_64} -lpthread -L/usr/local/mysql/lib
 
 #-------------------------------------------------------------------------------

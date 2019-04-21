@@ -11,7 +11,7 @@ endif
 
 DIRS            = src $(lib) 
 DIRS_CLEAN      = src bin test $(lib) script
-DIRS_INSTALL    = conf bin include doc $(lib) java
+DIRS_INSTALL    = conf bin include $(lib)
 
 default:
 	@echo "make libonly: only make libs, libutil.a libtaf.a libhessian.a libparse.a"
@@ -44,17 +44,19 @@ install:
 	if [ "$(PLATFORM)" == "x86_64" ]; then ln -sfT ${INSTALL_PATH}/lib64 ${INSTALL_PATH}/lib; fi
 	if [ "$(PLATFORM)" != "x86_64" ]; then ln -sfT ${INSTALL_PATH}/lib32 ${INSTALL_PATH}/lib; fi
 	@for dir in $(DIRS_INSTALL); do make -C $$dir install; echo; done
-	@echo 'TAF_PATH    :=/usr/local/taf-version/taf-'${TAF_VERSION} > makefile.taf.tmp
+	@echo 'TAF_PATH    :=/usr/local/taf' > makefile.taf.tmp
 	@cat makefile.taf >> makefile.taf.tmp
 	cp -rf makefile.taf.tmp ${INSTALL_PATH}/makefile.taf
 	cp -rf make.rules.lp64 ${INSTALL_PATH}/
 	cp -rf taf.mk ${INSTALL_PATH}/
 	cp -rf script/create_taf_server.sh ${INSTALL_PATH}/
 	cp -rf script/demo ${INSTALL_PATH}/
-	if [ ! -d ${INSTALL_PATH}/taf_server_java ]; then mkdir -p ${INSTALL_PATH}/taf_server_java; fi
+	#if [ ! -d ${INSTALL_PATH}/taf_server_java ]; then mkdir -p ${INSTALL_PATH}/taf_server_java; fi
 	@for dir in $(DIRS_INSTALL); do make -C $$dir install; echo; done
-	cp -rf java/tafservercreate/* ${INSTALL_PATH}/taf_server_java/
+	#cp -rf java/tafservercreate/* ${INSTALL_PATH}/taf_server_java/
 	ln -sfT  ${INSTALL_PATH} ${LINK_PATH}
+	if [ ! -d /home/tafjce ]; then mkdir -p /home/tafjce; fi
+	if [ ! -d /home/tafjce/release ]; then mkdir -p /home/tafjce/release; fi
 	if [  -d /home/tafjce ]; then cp -rf script/release /home/tafjce; fi
 	if [  -d /home/tafjce/release ]; then /home/tafjce/release/clean_obj.sh; fi
 	if [  -d /home/tafjce/release ]; then /home/tafjce/release/release_all.sh; fi

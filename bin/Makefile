@@ -3,7 +3,9 @@ TOPDIR	:= ..
 
 include ${TOPDIR}/make.rules
 
-BINFILES = hce2cpp jce2c jce2cpp jce2java jce2kjava jce2symcpp tafpatch tafnode tafregistry taflog tafpatchclient tafadminclient tafstat tafproperty tafconfig tafnotify jutil-1.0.2.jar
+#BINFILES = hce2cpp jce2c jce2cpp jce2java jce2kjava jce2symcpp tafpatch tafnode tafregistry taflog tafpatchclient tafadminclient tafstat tafproperty tafconfig tafnotify jutil-1.0.2.jar
+BINFILES = hce2cpp jce2c jce2cpp tafpatch tafnode tafregistry taflog tafpatchclient tafadminclient tafstat tafproperty tafconfig tafnotify jutil-1.0.2.jar
+
 
 all:
 	@echo "do all nothing"
